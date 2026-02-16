@@ -5,11 +5,13 @@
 using namespace std;
 using namespace std::chrono;
 
-int hornerRec(int a[], int n, int x) {
+int hornerRec(int a[], int n, int x)  {
     if (n == 1){
-        return a[0];}
+        return a[0];
+    }
 
     return hornerRec(a, n - 1, x) * x + a[n - 1];
+
 }
 
 int main() {

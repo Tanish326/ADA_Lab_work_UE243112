@@ -23,7 +23,7 @@ reccurance relation
 T(n) = c + T(n-1) 
 <img width="1847" height="832" alt="image" src="https://github.com/user-attachments/assets/2a4b2c2b-3c29-4cd4-ada6-3cace58680e6" />
 practical 2 - 
-Aim - To compute x raised to power n using an optimized recursive method with logarithmic time complexity.
+Aim - To compute x raised to  power n using an optimized recursive method with logarithmic time complexity.
 algo - 
 Start
 
