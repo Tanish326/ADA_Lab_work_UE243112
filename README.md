@@ -1000,9 +1000,141 @@ Compiler Optimization – Used in optimizing expression evaluation and reducing 
  Signal Processing – Helps optimize filter and transformation operations involving matrices.
  Dynamic Programming Problems – Used as a base model for interval DP problems and optimization techniques.
 
+Practical 29 :
+Aim : To find longest common subsequence from the two strings
+Algo used 
+int lcs(string a , string b)
+int n = a.size()
+int m = b.size()
+initialize dp[n+1][m+1]
+for( i = 0 to n)
+dp[i][0] = 0
+for(i= 0 to m)
+dp[0][i] = 0
 
-    
+for(i = 1 to n)
+for (j = 1 to m)
+if(a[i-1]==b[j-1]
+     dp[i][j] = 1 + dp[i-1][j-1]
+else
+dp[i][j] = max(dp[i-1][j],dp[i][j-1])
 
+time complexity analyis 
+o(n*m)
+<img width="1755" height="854" alt="image" src="https://github.com/user-attachments/assets/b7a225de-abce-40fe-a702-80277a2a0c7b" />
+
+applications : 
+. File Comparison
+
+LCS is used in file comparison tools such as diff utilities and version control systems to identify added, deleted, or modified lines between two files.
+
+2. DNA Sequence Matching
+
+In bioinformatics, LCS helps compare DNA, RNA, and protein sequences to find similarities, which is useful in gene analysis and medical research.
+
+3. Plagiarism Detection
+
+LCS is used to compare documents, assignments, and source code to detect copied or similar content.
+
+practical - 30 
+Aim : to find shortest path bw any two pairs 
+Algo used 
+# Algorithm to Find Shortest Distance and Path
+
+## Step 1: Initialize Distance Matrix
+
+Create a distance matrix `dist[][]` where:
+
+* `dist[i][j] = weight of edge between i and j`
+* If no direct edge exists, set `dist[i][j] = INF`
+* `dist[i][i] = 0`
+
+Also create a `next[][]` matrix for path reconstruction:
+
+* `next[i][j] = j` if edge exists
+* `next[i][j] = -1` if no path exists
+
+---
+
+## Step 2: Update Shortest Distances
+
+For every intermediate vertex `k`:
+
+For every source vertex `i`:
+
+For every destination vertex `j`:
+
+Check:
+
+```text id="6e2zzt"
+if dist[i][k] + dist[k][j] < dist[i][j]
+```
+
+Then update:
+
+```text id="3rmfkh"
+dist[i][j] = dist[i][k] + dist[k][j]
+next[i][j] = next[i][k]
+```
+
+This means a shorter path is found through vertex `k`.
+
+---
+
+## Step 3: Find Shortest Distance
+
+After all iterations:
+
+```text id="g7r1qv"
+dist[i][j]
+```
+
+contains the shortest distance between every pair of vertices.
+
+---
+
+## Step 4: Reconstruct Path
+
+To print path from source `u` to destination `v`:
+
+* If `next[u][v] == -1`, no path exists
+* Otherwise:
+
+  * Print `u`
+  * Repeatedly set:
+
+```text id="dhvx6m"
+u = next[u][v]
+```
+
+until `u == v`
+
+This gives the complete shortest path.
+
+---
+
+## Time Complexity
+
+O(V³)
+
+where V = number of vertices
+
+---
+
+## Space Complexity
+
+O(V²)
+
+for distance and path matrices
+
+---
+
+## Conclusion
+
+This algorithm finds the shortest distance between all pairs of vertices and also reconstructs the actual shortest path using the `next[][]` matrix.
+
+Complexity analyis 
+<img width="1389" height="908" alt="image" src="https://github.com/user-attachments/assets/26b28616-ff41-496a-9c0c-e64c02eafaba" />
 
   
 
