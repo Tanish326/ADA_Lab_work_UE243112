@@ -1,5 +1,6 @@
 Practical 1 - 
 AIM - To find sum of n numbers using reccursion 
+
 Algorithm - 
 step1 - Start
 step2 - Read an integer n
@@ -1041,7 +1042,7 @@ Aim : to find shortest path bw any two pairs
 Algo used 
 # Algorithm to Find Shortest Distance and Path
 
-## Step 1: Initialize Distance Matrix
+ Step 1: Initialize Distance Matrix
 
 Create a distance matrix `dist[][]` where:
 
@@ -1053,8 +1054,6 @@ Also create a `next[][]` matrix for path reconstruction:
 
 * `next[i][j] = j` if edge exists
 * `next[i][j] = -1` if no path exists
-
----
 
 ## Step 2: Update Shortest Distances
 
@@ -1072,7 +1071,7 @@ if dist[i][k] + dist[k][j] < dist[i][j]
 
 Then update:
 
-```text id="3rmfkh"
+
 dist[i][j] = dist[i][k] + dist[k][j]
 next[i][j] = next[i][k]
 ```
@@ -1085,13 +1084,11 @@ This means a shorter path is found through vertex `k`.
 
 After all iterations:
 
-```text id="g7r1qv"
+
 dist[i][j]
-```
 
 contains the shortest distance between every pair of vertices.
 
----
 
 ## Step 4: Reconstruct Path
 
@@ -1119,7 +1116,7 @@ O(V³)
 
 where V = number of vertices
 
----
+
 
 ## Space Complexity
 
@@ -1127,19 +1124,163 @@ O(V²)
 
 for distance and path matrices
 
----
 
-## Conclusion
+
 
 This algorithm finds the shortest distance between all pairs of vertices and also reconstructs the actual shortest path using the `next[][]` matrix.
 
 Complexity analyis 
 <img width="1389" height="908" alt="image" src="https://github.com/user-attachments/assets/26b28616-ff41-496a-9c0c-e64c02eafaba" />
 
-  
+time complexity is o(n^3)
 
 
+Practical - 31 : 
+Aim : To solve 0/1 knapsack problem using Dp array and to plot a graph comparing theoritical vs practical 
+Algo used 
+Knapsack(wt, val, W, n)
+{
+    for w = 0 to W
+        K[0][w] = 0
 
+    for i = 0 to n
+        K[i][0] = 0
+
+    for i = 1 to n do
+    {
+        for w = 1 to W do
+        {
+            if wt[i] ≤ w then
+                K[i][w] = max( K[i-1][w],
+                               val[i] + K[i-1][w - wt[i]] )
+            else
+                K[i][w] = K[i-1][w]
+        }
+    }
+
+    return K[n][W]
+}
+
+Time complexity analyis 
+<img width="1919" height="889" alt="image" src="https://github.com/user-attachments/assets/c87ae3c7-5189-493d-b84b-106b9b19c61b" />
+time complexity : o(n*w)
+
+Use cases :
+1) Resource Allocation: Optimal distribution of limited resources among tasks.
+2) Capital Budgeting: Selecting projects to maximize profit within a fixed budget.
+3) Cargo Loading: Maximizing value of items loaded in a vehicle with weight limit.
+4) Subset Sum Problems: Checking/constructing subsets under a given constraint.
+5) Portfolio Selection: Choosing investments to maximize return within capital limit.
+6) Memory Management: Selecting programs/files to fit in limited storage.
+7) Task/Exam Scheduling: Selecting activities or questions under time constraints.
+
+Practical 32 : 
+
+Aim : to solve 0/1 knapsack using merge purge algorithm 
+
+Algo used :
+MergePurge(A, B, m, n)
+{
+    i = 1, j = 1, k = 0
+    last = -∞   // or null sentinel
+
+    while (i ≤ m AND j ≤ n)
+    {
+        if (A[i] < B[j])
+        {
+            x = A[i]
+            i++
+        }
+        else if (A[i] > B[j])
+        {
+            x = B[j]
+            j++
+        }
+        else
+        {
+            x = A[i]
+            i++
+            j++
+        }
+
+        if (x ≠ last)
+        {
+            C[k] = x
+            k++
+            last = x
+        }
+    }
+
+    // Copy remaining elements of A
+    while (i ≤ m)
+    {
+        if (A[i] ≠ last)
+        {
+            C[k] = A[i]
+            k++
+            last = A[i]
+        }
+        i++
+    }
+
+    
+    while (j ≤ n)
+    {
+        if (B[j] ≠ last)
+        {
+            C[k] = B[j]
+            k++
+            last = B[j]
+        }
+        j++
+    }
+
+    return C
+}
+
+Time complexity analyis :
+O(n × 2^n)
+
+Practical 33 :
+
+Aim : To solve travelling salesperson problem using Dp
+
+Algo used :
+TSP(C, n)
+{
+    initialize DP[S][i] = ∞
+
+    DP[1 << 0][0] = 0   // assuming 0 is starting city
+
+    for S = 1 to (2^n - 1)
+    {
+        for each city i in S
+        {
+            for each city j in S, j ≠ i
+            {
+                DP[S][i] = min(DP[S][i],
+                               DP[S - {i}][j] + C[j][i])
+            }
+        }
+    }
+
+    answer = min over i {
+        DP[ALL][i] + C[i][0]
+    }
+
+    return answer
+}
+Time complexity Analyis 
+<img width="1127" height="706" alt="image" src="https://github.com/user-attachments/assets/31938823-5072-4f12-8124-dd53e7b4de68" />
+
+Tc : o(n^2*2^n)
+Use cases :
+1) Logistics & Delivery: Optimal delivery routes for courier and e-commerce services
+2) Transportation: Efficient routing for buses, taxis, airlines, and travel planning
+3) Manufacturing: Minimizing tool/robot movement in CNC machines and assembly lines
+4) Design: Optimizing drilling and wiring paths on chips
+5)Networking: Efficient data routing in communication networks
+6)ourism: Planning shortest route to visit multiple destinations
 
 
 
