@@ -2,14 +2,12 @@ Practical 1 -
 AIM - To find sum of n numbers using reccursion 
 
 Algorithm - 
-step1 - Start
-step2 - Read an integer n
-step3 - Call the function sum(n)
-step4 - If n == 0, return 0
-step5 - Else, return n + sum(n-1)
-step6 - Store the returned value in result
-step7 -Print result
-step8 - Stop
+
+SUM(n) {
+if (n == 0)  return 0;
+
+return n + SUM(n - 1) }
+
 use cases - 
 1) Mathematical calculations
 
@@ -1282,11 +1280,138 @@ Use cases :
 5)Networking: Efficient data routing in communication networks
 6)ourism: Planning shortest route to visit multiple destinations
 
+Practical 34 :
+Aim : To Place N queens on a chessboard such that in a way that no 2 queen can attack each other 
+Algorithm used :
+1. Start from row = 0
+2. For each column in current row:
+    a. Check if safe
+    b. If safe:
+         place queen
+         recur for next row
+         remove queen (backtrack)
+3. If all rows filled → solution found
+
+Use cases :
+CSP Problems → scheduling, timetables
+CPU Scheduling → avoid task conflicts
+Register Allocation → compiler optimization
+VLSI Design → chip component placement
+Network Assignment → frequency allocation
+AI / Search → backtracking, pruning
+Robotics → collision-free placement
+Benchmarking → test algorithms
+
+Time complexity analyis  :
+Time complexity is o(n!)
+<img width="1785" height="854" alt="image" src="https://github.com/user-attachments/assets/1c56d43a-7a78-4f8e-88f8-90aa5592ac9b" />
 
 
 
+Practical 35 :
+Aim : To find subsets from a given array whose sum is equal to the target sum
+
+Algorithm used :
+
+SUBSET(i, s, r)
+{
+    if (check(i, s, r)) then
+    {
+        if (s == target) then
+            print solution
+        else
+        {
+            x[i] = 1
+            SUBSET(i + 1, s + arr[i], r - arr[i])
+
+            x[i] = 0
+            SUBSET(i + 1, s, r - arr[i])
+        }
+    }
+}
 
 
+check(i, s, r)
+{
+    return (s + r ≥ target) AND (s == target OR s + arr[i] ≤ target)
+}
 
+Time complexity Analyis :
+Tc = o(2^n)
+
+Use cases :
+Subset Sum Problem → target sum detection
+Combinatorics → generate all combinations
+Knapsack Problems → selection under constraints
+Feature Selection (ML) → choose best subset of features
+Scheduling → select compatible tasks
+Cryptography → subset-based problems (e.g., knapsack cipher)
+Decision Making → evaluate all possible choices
+Backtracking Practice → state space exploration
+
+
+Practical 36 :
+Aim : To Color the graph with given colors such that no 2 adjacent vertices get same colored
+
+Algo used :
+SAFE(v, c) { 
+for each adjacent vertex u of v 
+if 
+(color[u] == c) 
+return false return true }
+COLOR(v) { 
+if (v == n)
+then print solution
+else {
+for color = 1 to m do 
+{ if (SAFE(v, color)) 
+then {
+assign color to vertex v
+COLOR(v + 1) 
+remove color (backtrack) } } } }
+
+Time complexity analysis :
+tc : o(m^n)
+
+Use case :
+Map Coloring → color regions so adjacent areas differ
+Timetable Scheduling → avoid clashes (exams, classes)
+Register Allocation → assign CPU registers in compilers
+Frequency Assignment → avoid signal interference in networks
+Task Scheduling → assign non-conflicting resources
+Sudoku / Puzzles → constraint-based filling
+Resource Allocation → conflict-free assignments
+
+Practical 37:
+Aim : To find Hamilton cycle in a given graph
+Algo used :
+SAFE(v, pos) { 
+
+if (graph[path[pos-1]][v] == 0) 
+return false 
+Check if already used for i = 0 to pos-1 
+if (path[i] == v) 
+return false 
+
+return true }
+HAM_CYCLE(pos) {
+
+if (pos == n) then 
+{ if (graph[path[pos-1]][path[0]] == 1) 
+print path (cycle) return } 
+for v = 1 to n-1 do 
+{ if (SAFE(v, pos)) then
+{ path[pos] = v HAM_CYCLE(pos + 1) path[pos] = -1 // backtrack } } }
+
+
+time complexity analyis : 
+Tc => o(N!)
+
+Routing Problems → visit all nodes once (like delivery routes)
+Travel Planning → visit cities exactly once
+DNA Sequencing → ordering fragments
+Network Topology → cycle detection in networks
+Puzzle Solving → path-based constraints
+Circuit Design → traversal of all components
 
 
